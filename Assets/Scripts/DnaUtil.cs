@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,20 +17,20 @@ public class DnaUtil
         {new Codon("XYY"), GraphyNodeGene.Type.Food},
         {new Codon("XYZ"), GraphyNodeGene.Type.Food},
         {new Codon("XZX"), GraphyNodeGene.Type.Food},
-        {new Codon("XZY"), GraphyNodeGene.Type.Food},
-        {new Codon("XZZ"), GraphyNodeGene.Type.Food},
+        {new Codon("XZY"), GraphyNodeGene.Type.Attack},
+        {new Codon("XZZ"), GraphyNodeGene.Type.Attack},
         {new Codon("YXX"), GraphyNodeGene.Type.Attack},
         {new Codon("YXY"), GraphyNodeGene.Type.Attack},
         {new Codon("YXZ"), GraphyNodeGene.Type.Attack},
-        {new Codon("YYX"), GraphyNodeGene.Type.Attack},
-        {new Codon("YYY"), GraphyNodeGene.Type.Attack},
-        {new Codon("YYZ"), GraphyNodeGene.Type.Attack},
+        {new Codon("YYX"), GraphyNodeGene.Type.Structure},
+        {new Codon("YYY"), GraphyNodeGene.Type.Structure},
+        {new Codon("YYZ"), GraphyNodeGene.Type.Structure},
         {new Codon("YZX"), GraphyNodeGene.Type.Defend},
         {new Codon("YZY"), GraphyNodeGene.Type.Defend},
         {new Codon("YZZ"), GraphyNodeGene.Type.Defend},
         {new Codon("ZXX"), GraphyNodeGene.Type.Defend},
         {new Codon("ZXY"), GraphyNodeGene.Type.Defend},
-        {new Codon("ZXZ"), GraphyNodeGene.Type.Defend},
+        {new Codon("ZXZ"), GraphyNodeGene.Type.Move},
         {new Codon("ZYX"), GraphyNodeGene.Type.Move},
         {new Codon("ZYY"), GraphyNodeGene.Type.Move},
         {new Codon("ZYZ"), GraphyNodeGene.Type.Move},
@@ -37,6 +38,7 @@ public class DnaUtil
         {new Codon("ZZY"), GraphyNodeGene.Type.Move},
         {new Codon("ZZZ"), GraphyNodeGene.Type.Move},
     };
+    public static readonly List<String> chars = new List<String> {"X","Y","Z"};
 
     public static GraphyGene DecodeDnaString(string dnaString) {
         GraphyGene gene = new GraphyGene();
@@ -44,27 +46,31 @@ public class DnaUtil
         List<Exon> exons = ExtractExons(codons);
         foreach(Exon exon in exons) {
             // Make Node Gene
-            GraphyNodeGene nodeGene = new GraphyNodeGene(GraphyNodeGene.Type.Structure);
-            switch (typeCodonDict[exon[1]])
-            {
-                case GraphyNodeGene.Type.Food:
-                    break;
-                case GraphyNodeGene.Type.Attack:
-                    break;
-                case GraphyNodeGene.Type.Defend:
-                    break;
-                case GraphyNodeGene.Type.Move:
-                    break;
-                default:
-                    break;
+            GraphyNodeGene nodeGene = new GraphyNodeGene(GraphyNodeGene.Type.Structure, 0);
+            if (exon.Validate()) {
+                System.Random linkageEncoderGenerator = new System.Random((0xD & 0xA) ^ exon[1].str.GetHashCode());
+                nodeGene = new GraphyNodeGene(typeCodonDict[exon[0]], gene.nodes.Count > 0 ? linkageEncoderGenerator.Next(0, gene.nodes.Count) : -1);
+                // switch (typeCodonDict[exon[1]])
+                // {
+                //     case GraphyNodeGene.Type.Food:
+                //         break;
+                //     case GraphyNodeGene.Type.Attack:
+                //         break;
+                //     case GraphyNodeGene.Type.Defend:
+                //         break;
+                //     case GraphyNodeGene.Type.Move:
+                //         break;
+                //     default:
+                //         break;
+                // }
+                // Add Node Gene to GraphyGene nodes
+                gene.nodes.Add(nodeGene);
             }
-            // Add Node Gene to GraphyGene nodes
-            gene.nodes.Add(nodeGene);
         }
         // foreach(Exon exon in exons) { 
         //     foreach(Codon codon in exon) { Debug.Log(codon.str); }
         // }
-        return null;
+        return gene;
     }
 
     private static List<Exon> ExtractExons(List<Codon> codons) {
@@ -103,6 +109,17 @@ public class DnaUtil
     public static bool ValidateDnaString(string dnaString) {
         return rg.IsMatch(dnaString);
     }
+
+    public static string Mutate(string dnaString, double mutProb = 0.01) {
+        string newString = "";
+        System.Random rng = new System.Random();
+        for (int i = 0; i < dnaString.Length; i++) {
+            newString += rng.NextDouble() < mutProb ? chars[rng.Next(0,3)] : "";
+            newString += rng.NextDouble() < mutProb ? chars[rng.Next(0,3)] : dnaString[i];
+        }
+        newString += rng.NextDouble() < mutProb ? chars[rng.Next(0,3)] : "";
+        return newString;
+    }
 }
 
 public class Codon
@@ -130,6 +147,14 @@ public class Codon
             if (codon.str == this.str) { return true; }
         }
         return false;
+    }
+
+    public override Int32 GetHashCode() {
+        return this.str.GetHashCode();
+    }
+
+    public override bool Equals(object? obj) {
+        return this.str == (obj as Codon)?.str;
     }
 }
 

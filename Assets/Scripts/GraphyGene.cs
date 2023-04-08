@@ -11,6 +11,10 @@ public class GraphyGene
     public GraphyGene() {
         nodes = new List<GraphyNodeGene>();
     }
+
+    public override string ToString() {
+        return "Gene\n" + String.Join('\n', nodes);
+    }
 }
 
 public class GraphyNodeGene
@@ -23,15 +27,27 @@ public class GraphyNodeGene
         Defend = 3,
         Move = 4
     }
+    public readonly Dictionary<Type, String> typeNameDict = new Dictionary<Type, String> {
+        { Type.Structure, "Structure" },
+        { Type.Food, "Food" },
+        { Type.Attack, "Attack" },
+        { Type.Defend, "Defend" },
+        { Type.Move, "Move" }
+    };
 
-    public readonly Dictionary<Type, Int32> weightLenDict = new Dictionary<Type, Int32> {}; // #TODO: Create Mapping
+    public const int WEIGHT_LEN = 10;
 
     public Type type = Type.Structure;
     public int linkageEncoder = -1;
     public List<Single> weights;
 
-    public GraphyNodeGene(Type type) {
+    public GraphyNodeGene(Type type, int linkageEncoder) {
         this.type = type;
-        this.weights = new List<Single>(weightLenDict[type]);
+        this.linkageEncoder = linkageEncoder;
+        this.weights = new List<Single>(WEIGHT_LEN);
+    }
+
+    public override string ToString() {
+        return String.Format("{0} Node : {1}", typeNameDict[this.type], linkageEncoder);
     }
 }
