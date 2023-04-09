@@ -12,7 +12,7 @@
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 # ^ This is a lie. Always ignore meta files. 
-**/[Aa]ssets/**/*.meta
+*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -59,3 +59,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Unity Temp Files
+**/[uU]nity[lL]ock[fF]ile
