@@ -45,6 +45,12 @@ public class Graphy : MonoBehaviour
         newNode.GetComponent<GraphyNode>().gene = gene;
         newNode.GetComponent<GraphyNode>().nodeGene = nodeGene;
         newNode.GetComponent<GraphyNode>().id = staticRng.Next();
+        switch (nodeGene.type) {
+            case GraphyNodeGene.Type.Move:
+                newNode.AddComponent<MoveNode>();
+                newNode.GetComponent<MoveNode>().nodeGene = nodeGene;
+                break;
+        }
         nodeObjects.Add(newNode);
         // Initiate Linkage
         if (nodeGene.linkageEncoder >= 0) {
