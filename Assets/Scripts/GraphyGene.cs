@@ -39,11 +39,13 @@ public class GraphyNodeGene
 
     public Type type = Type.Structure;
     public int linkageEncoder = -1;
+    public List<Codon> codons;
     public List<Single> weights;
 
-    public GraphyNodeGene(Type type, int linkageEncoder) {
+    public GraphyNodeGene(Type type, int linkageEncoder, List<Codon> codons) {
         this.type = type;
         this.linkageEncoder = linkageEncoder;
+        this.codons = codons;
         this.weights = new List<Single>(WEIGHT_LEN);
     }
 

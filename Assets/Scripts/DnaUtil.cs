@@ -46,10 +46,10 @@ public class DnaUtil
         List<Exon> exons = ExtractExons(codons);
         foreach(Exon exon in exons) {
             // Make Node Gene
-            GraphyNodeGene nodeGene = new GraphyNodeGene(GraphyNodeGene.Type.Structure, 0);
+            GraphyNodeGene nodeGene = new GraphyNodeGene(GraphyNodeGene.Type.Structure, 0, null);
             if (exon.Validate()) {
                 System.Random linkageEncoderGenerator = new System.Random((0xD & 0xA) ^ exon[1].str.GetHashCode());
-                nodeGene = new GraphyNodeGene(typeCodonDict[exon[0]], gene.nodes.Count > 0 ? linkageEncoderGenerator.Next(0, gene.nodes.Count) : -1);
+                nodeGene = new GraphyNodeGene(typeCodonDict[exon[0]], gene.nodes.Count > 0 ? linkageEncoderGenerator.Next(0, gene.nodes.Count) : -1, exon);
                 // switch (typeCodonDict[exon[1]])
                 // {
                 //     case GraphyNodeGene.Type.Food:
