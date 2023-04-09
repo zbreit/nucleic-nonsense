@@ -6,6 +6,7 @@ public class GraphyNode : MonoBehaviour
 {
     public GraphyGene gene;
     public GraphyNodeGene nodeGene;
+    public int id;
 
     public float resource = 50.0f;
 
@@ -40,6 +41,6 @@ public class GraphyNode : MonoBehaviour
     }
 
     void OnDestroy() {
-        foreach(GameObject linkObj in linkages) { if (!(linkObj.transform is null)) Destroy(linkObj.transform); }
+        foreach(GameObject linkObj in linkages) { if (!(linkObj is null || linkObj.transform is null)) Destroy(linkObj.transform); }
     }
 }

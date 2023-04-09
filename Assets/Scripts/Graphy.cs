@@ -13,12 +13,16 @@ public class Graphy : MonoBehaviour
     public GameObject nodePrefab;
     public GameObject linkagePrefab;
 
+    private static System.Random staticRng;
+
     public float linkLength = 2.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         if (gene is null) { Destroy(transform.gameObject); }
+
+        staticRng = new System.Random();
         
         startTime = Time.time;
         nodeObjects = new List<GameObject>(gene.nodes.Count);
@@ -40,6 +44,7 @@ public class Graphy : MonoBehaviour
         );
         newNode.GetComponent<GraphyNode>().gene = gene;
         newNode.GetComponent<GraphyNode>().nodeGene = nodeGene;
+        newNode.GetComponent<GraphyNode>().id = staticRng.Next();
         nodeObjects.Add(newNode);
         // Initiate Linkage
         if (nodeGene.linkageEncoder >= 0) {
