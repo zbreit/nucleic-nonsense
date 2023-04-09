@@ -21,7 +21,7 @@ public class EnvironmentGenerator : MonoBehaviour
     [SerializeField]
     private GameObject foodPrefab;
 
-    public uint currentFoodCount;
+    public HashSet<Food> spawnedFood;
 
 
     // Start is called before the first frame update
@@ -62,7 +62,7 @@ public class EnvironmentGenerator : MonoBehaviour
         while(true)
         {
             // Wait until next coroutine call before spawning a new food
-            if(currentFoodCount >= maxFoodCount)
+            if(spawnedFood.Count >= maxFoodCount)
             {
                 yield return null;
                 continue;
@@ -79,11 +79,11 @@ public class EnvironmentGenerator : MonoBehaviour
         float y = Random.Range(-1f, 1f) * (dimensions.y - foodPrefab.transform.localScale.y) / 2;
         float z = 0;
         Vector3 spawnLocation = new Vector3(x, y, z) + transform.position;
-        currentFoodCount++;
         GameObject foodObject = Instantiate(foodPrefab, spawnLocation, Quaternion.identity);
         Food food = foodObject.GetComponent<Food>();
 
         // Decrement food count on death
-        food.OnEaten += () => currentFoodCount--;
+        spawnedFood.Add(food);
+        food.OnEaten += () => spawnedFood.Remove(food);
     }
 }
