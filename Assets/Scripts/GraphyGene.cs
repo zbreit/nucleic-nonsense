@@ -46,7 +46,7 @@ public class GraphyNodeGene
         this.type = type;
         this.linkageEncoder = linkageEncoder;
         this.codons = codons;
-        this.weights = new List<Single>(WEIGHT_LEN);
+        this.weights = new List<Single>(new float[WEIGHT_LEN]);
     }
 
     public override string ToString() {
