@@ -24,8 +24,18 @@ public class RyanTestObj : MonoBehaviour
         // GameObject testNode = Instantiate(nodePrefab);
         // testNode.GetComponent<GraphyNode>().gene = DnaUtil.DecodeDnaString(testStr);
         // testNode.GetComponent<GraphyNode>().nodeGene = DnaUtil.DecodeDnaString(testStr).nodes[0];
+
         GameObject graphy = Instantiate(spawnerPrefab);
         graphy.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(testStr);
+
+        // GameObject graphy2 = Instantiate(spawnerPrefab);
+        // graphy2.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(newStr);
+        // graphy2.transform.position += new Vector3(5.0f, -5.0f, 0.0f);
+
+        // newStr = DnaUtil.Mutate(testStr);
+        // graphy2 = Instantiate(spawnerPrefab);
+        // graphy2.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(newStr);
+        // graphy2.transform.position += new Vector3(5.0f, 5.0f, 0.0f);
     }
 
     // Update is called once per frame

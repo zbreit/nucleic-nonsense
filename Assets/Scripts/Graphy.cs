@@ -14,6 +14,7 @@ public class Graphy : MonoBehaviour
     public GameObject linkagePrefab;
 
     private static System.Random staticRng;
+    private static int id;
 
     public float linkLength = 2.0f;
 
@@ -23,6 +24,7 @@ public class Graphy : MonoBehaviour
         if (gene is null) { Destroy(transform.gameObject); }
 
         staticRng = new System.Random();
+        id = staticRng.Next();
         
         startTime = Time.time;
         nodeObjects = new List<GameObject>(gene.nodes.Count);
@@ -44,11 +46,15 @@ public class Graphy : MonoBehaviour
         );
         newNode.GetComponent<GraphyNode>().gene = gene;
         newNode.GetComponent<GraphyNode>().nodeGene = nodeGene;
-        newNode.GetComponent<GraphyNode>().id = staticRng.Next();
+        newNode.GetComponent<GraphyNode>().graphyID = id;
         switch (nodeGene.type) {
             case GraphyNodeGene.Type.Move:
                 newNode.AddComponent<MoveNode>();
                 newNode.GetComponent<MoveNode>().nodeGene = nodeGene;
+                break;
+            case GraphyNodeGene.Type.Food:
+                newNode.AddComponent<FoodNode>();
+                newNode.GetComponent<FoodNode>().nodeGene = nodeGene;
                 break;
         }
         nodeObjects.Add(newNode);

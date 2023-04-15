@@ -6,7 +6,7 @@ public class GraphyNode : MonoBehaviour
 {
     public GraphyGene gene;
     public GraphyNodeGene nodeGene;
-    public int id;
+    public int graphyID;
 
     public float resource = 50.0f;
 
