@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GraphyNode : MonoBehaviour
 {
-    public GraphyGene gene;
+    public Graphy graphy;
     public GraphyNodeGene nodeGene;
-    public int graphyID;
 
     public float resource = 50.0f;
 
     public SpriteRenderer spriteRenderer;
 
-    public List<GameObject> linkages;
+    public List<Linkage> linkages;
 
     public readonly Dictionary<GraphyNodeGene.Type, Color> colorDict = new Dictionary<GraphyNodeGene.Type, Color> {
         { GraphyNodeGene.Type.Structure,   new Color(  0.8f,       0.8f,       0.8f,       1.0f) },
@@ -25,22 +24,52 @@ public class GraphyNode : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        linkages = new List<GameObject>();
+        linkages = new List<Linkage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nodeGene is null || gene is null) { Destroy(transform.gameObject); } else {
+        if (nodeGene is null || graphy is null) { Destroy(transform.gameObject); } else {
             spriteRenderer.color = colorDict[nodeGene.type];
         }
-    }
-
-    void FixedUpdate() {
 
     }
 
     void OnDestroy() {
-        foreach(GameObject linkObj in linkages) { if (!(linkObj is null || linkObj.transform is null)) Destroy(linkObj.transform); }
+        foreach(Linkage linkObj in linkages) {
+            if (!(linkObj is null)) {
+                Destroy(linkObj);
+            }
+        }
     }
+
+    void FixedUpdate() {
+        if (graphy.spawningComplete) {
+            OnFixedUpdateNodeBehavior[] behaviors = transform.GetComponents<OnFixedUpdateNodeBehavior>();
+            foreach(OnFixedUpdateNodeBehavior b in behaviors) {
+                b.OnFixedUpdate();
+            }
+        }
+    }
+
+    public void InteractReceive(Interaction interaction) {
+        if (graphy.spawningComplete) {
+            OnInteractReceiveNodeBehavior[] behaviors = transform.GetComponents<OnInteractReceiveNodeBehavior>();
+            foreach(OnInteractReceiveNodeBehavior b in behaviors) {
+                b.OnInteractReceive(interaction);
+            }
+        }
+    }
+
+    public void InteractSend(Interaction interaction) {
+        if (graphy.spawningComplete) {
+            OnInteractSendNodeBehavior[] behaviors = transform.GetComponents<OnInteractSendNodeBehavior>();
+            foreach(OnInteractSendNodeBehavior b in behaviors) {
+                b.OnInteractSend(interaction);
+            }
+        }
+    }
+
+    public class Interaction {}
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Linkage : MonoBehaviour
 {
     [SerializeField]
-    private GameObject left;
+    private GraphyNode left;
     [SerializeField]
-    private GameObject right;
+    private GraphyNode right;
 
     public float width = 0.2f;
     public float length = 2f;
@@ -25,7 +25,7 @@ public class Linkage : MonoBehaviour
         UpdateOrientation();
     }
 
-    public void SetEnds(GameObject left, GameObject right) {
+    public void SetEnds(GraphyNode left, GraphyNode right) {
         this.left = left;
         this.right = right;
         UpdateShape();

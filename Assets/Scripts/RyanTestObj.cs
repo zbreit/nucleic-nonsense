@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RyanTestObj : MonoBehaviour
 {
-    public GameObject nodePrefab;
-    public GameObject spawnerPrefab;
+    public GameObject graphyPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -25,15 +24,15 @@ public class RyanTestObj : MonoBehaviour
         // testNode.GetComponent<GraphyNode>().gene = DnaUtil.DecodeDnaString(testStr);
         // testNode.GetComponent<GraphyNode>().nodeGene = DnaUtil.DecodeDnaString(testStr).nodes[0];
 
-        GameObject graphy = Instantiate(spawnerPrefab);
+        GameObject graphy = Instantiate(graphyPrefab);
         graphy.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(testStr);
 
-        // GameObject graphy2 = Instantiate(spawnerPrefab);
+        // GameObject graphy2 = Instantiate(graphyPrefab);
         // graphy2.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(newStr);
         // graphy2.transform.position += new Vector3(5.0f, -5.0f, 0.0f);
 
         // newStr = DnaUtil.Mutate(testStr);
-        // graphy2 = Instantiate(spawnerPrefab);
+        // graphy2 = Instantiate(graphyPrefab);
         // graphy2.GetComponent<Graphy>().gene = DnaUtil.DecodeDnaString(newStr);
         // graphy2.transform.position += new Vector3(5.0f, 5.0f, 0.0f);
     }

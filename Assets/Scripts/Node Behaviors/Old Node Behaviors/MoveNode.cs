@@ -36,7 +36,7 @@ public class MoveNode : MonoBehaviour
         Food closestFood = null;
         foreach(GraphyNode node in GameObject.FindObjectsOfType<GraphyNode>()) {
             if (
-                (node.graphyID != transform.GetComponent<GraphyNode>().graphyID) &&
+                (node.graphy != transform.GetComponent<GraphyNode>().graphy) &&
                 ((Vector2) (node.transform.position - transform.position)).magnitude <= nodeRange
             ) {
                 // Debug.Log(node);

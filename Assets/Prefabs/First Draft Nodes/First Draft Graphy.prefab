@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1843835723793848323}
   - component: {fileID: 7414820418256914848}
+  - component: {fileID: 4076865081054554468}
   m_Layer: 0
-  m_Name: GraphySpawner
+  m_Name: First Draft Graphy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6fdf4d8a75d0449b25180a9b16874e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeObjects: []
-  nodePrefab: {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  nodes: []
+  spawningComplete: 0
+  nodePrefabs:
+  - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  - {fileID: 4705443570358139127, guid: b8d12f96e06911f40b43bbe213e7a54b, type: 3}
   linkagePrefab: {fileID: 5690746464578830398, guid: db2068874829fea46bb58c7b4f5391eb, type: 3}
   linkLength: 2
+--- !u!114 &4076865081054554468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176948171895487867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5344de45e9fa449bd87b82c7db1fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

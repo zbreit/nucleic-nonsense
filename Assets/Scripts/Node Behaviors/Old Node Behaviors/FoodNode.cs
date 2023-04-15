@@ -33,14 +33,16 @@ public class FoodNode : MonoBehaviour
         if (!(targetFood is null) && (((Vector2) (targetFood.transform.position - transform.position)).magnitude > eatRange)) {
             targetFood = null;
         }
-        if (!(targetFood is null)) { Debug.Log(((Vector2) (targetFood.transform.position - transform.position)).magnitude); Debug.Log(eatRange);
-            Debug.Log(((Vector2) (targetFood.transform.position - transform.position)).magnitude <= eatRange);
-        }
+        // if (!(targetFood is null)) {
+        //     Debug.Log(((Vector2) (targetFood.transform.position - transform.position)).magnitude);
+        //     Debug.Log(eatRange);
+        //     Debug.Log(((Vector2) (targetFood.transform.position - transform.position)).magnitude <= eatRange);
+        // }
 
         FoodNode[] foodNodes = GameObject.FindObjectsOfType<FoodNode>();
         List<FoodNode> foodNodesInGraphy = new List<FoodNode>();
         foreach(FoodNode node in foodNodes) {
-            if (node.transform.GetComponent<GraphyNode>().graphyID == transform.GetComponent<GraphyNode>().graphyID) { foodNodesInGraphy.Add(node); }
+            if (node.transform.GetComponent<GraphyNode>().graphy == transform.GetComponent<GraphyNode>().graphy) { foodNodesInGraphy.Add(node); }
         }
 
         if (targetFood is null) {
@@ -53,18 +55,6 @@ public class FoodNode : MonoBehaviour
                         targetFood = food;
                         break;
                     }
-                    // if (closestFood is null) {
-                    //     closestFood = food;
-                    // } else {
-                    //     if (
-                    //         ((Vector2) (food.transform.position - transform.position)).magnitude
-                    //         < 
-                    //         ((Vector2) ((closestFood as Food).transform.position - transform.position)).magnitude
-                    //     ) {
-                    //         closestFood = food;
-                    //     }
-                    // }
-
                 }
             }
         }
