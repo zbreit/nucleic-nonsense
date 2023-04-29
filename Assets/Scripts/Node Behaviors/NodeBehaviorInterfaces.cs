@@ -35,5 +35,5 @@ public interface OnBirthNodeBehavior
 
 public interface OnConsumeNodeBehavior
 {
-    void OnConsume();
+    void OnConsume(float amount, Food food);
 }

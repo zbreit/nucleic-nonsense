@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4705443570358139113}
   - component: {fileID: 4705443570358139112}
-  - component: {fileID: -8829385552154213873}
-  - component: {fileID: 6046510507892323079}
+  - component: {fileID: 2545576927801962714}
   - component: {fileID: 5050630453024937555}
   - component: {fileID: 444553140256768707}
   m_Layer: 0
-  m_Name: First Draft Move Node
+  m_Name: First Draft Food Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +51,8 @@ MonoBehaviour:
   graphy: {fileID: 0}
   resource: 50
   spriteRenderer: {fileID: 4705443570685817104}
---- !u!114 &-8829385552154213873
+  drawDebug: 0
+--- !u!114 &2545576927801962714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,31 +61,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4705443570358139127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21063a58006976e4496258d12e9c2f89, type: 3}
+  m_Script: {fileID: 11500000, guid: fc5e3053146a4f941b7597980dff3776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offsetWeightsFactor: 0
-  moveFactor: 5
-  MIN_RANGE: 30
-  MIN_FORCE: 2
-  MIN_COST: 1
---- !u!114 &6046510507892323079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705443570358139127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe5eb677733edc4bae6ac2f0d6cbc42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetWeightsFactor: 10
-  moveFactor: 5
-  MIN_RANGE: 30
-  MIN_FORCE: 2
-  MIN_COST: 1
+  speedFactor: 1
+  DEF_RANGE: 2.5
+  DEF_SPEED: 2
+  DEF_EFFICIENCY: 2
+  DEF_COST: 1
 --- !u!50 &5050630453024937555
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +181,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.22267589, g: 0.6509434, b: 0.095185116, a: 1}
+  m_Color: {r: 1, g: 0.976174, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

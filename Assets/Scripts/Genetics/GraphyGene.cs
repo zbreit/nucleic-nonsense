@@ -35,7 +35,7 @@ public class GraphyNodeGene
         { Type.Move, "Move" }
     };
 
-    public const int WEIGHT_LEN = 10;
+    public const int WEIGHT_LEN = 100;
 
     public Type type = Type.Structure;
     public int linkageEncoder = -1;

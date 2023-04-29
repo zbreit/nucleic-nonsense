@@ -6,15 +6,16 @@ public class Graphy : MonoBehaviour
 {
 
     // Graphy logic
+    [HeaderAttribute("Organism Definition")]
     public GraphyGene gene;
     public List<GraphyNode> nodes;
     private static int id;
     private float timeOfBirth = 0f;
 
     // Spawning logic
+    [HeaderAttribute("Spawning Properties")]
     private int nodeIndex = 0;
     public bool spawningComplete = false;
-
     public GameObject[] nodePrefabs;
     public GameObject linkagePrefab;
     [SerializeField]
@@ -73,24 +74,14 @@ public class Graphy : MonoBehaviour
         newNode.graphy = this;
         newNode.nodeGene = nodeGene;
         newNode.transform.parent = this.transform;
-        // Apply node type
-        // switch (nodeGene.type) {
-        //     case GraphyNodeGene.Type.Move:
-        //         newNode.gameObject.AddComponent<MoveNode>();
-        //         newNode.gameObject.GetComponent<MoveNode>().nodeGene = nodeGene;
-        //         break;
-        //     case GraphyNodeGene.Type.Food:
-        //         newNode.gameObject.AddComponent<FoodNode>();
-        //         newNode.gameObject.GetComponent<FoodNode>().nodeGene = nodeGene;
-        //         break;
-        // }
+        // Add to list
         nodes.Add(newNode);
 
         // Setup Linkage ==========================================================
         if (nodeGene.linkageEncoder >= 0) {
             obj = Instantiate(
                 linkagePrefab,
-                hostNode.transform.position + spawnOffsetVector/2,
+                hostNode.transform.position + spawnOffsetVector/2 + new Vector3(0.0f, 0.0f, 1.0f),
                 Quaternion.identity
             );
             Linkage newLinkage = obj.GetComponent<Linkage>();

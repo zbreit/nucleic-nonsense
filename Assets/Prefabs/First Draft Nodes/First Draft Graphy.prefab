@@ -49,7 +49,7 @@ MonoBehaviour:
   spawningComplete: 0
   nodePrefabs:
   - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
-  - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
+  - {fileID: 4705443570358139127, guid: 1db658831cb8f104b82f5ddd5139bba7, type: 3}
   - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
   - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
   - {fileID: 4705443570358139127, guid: b8d12f96e06911f40b43bbe213e7a54b, type: 3}

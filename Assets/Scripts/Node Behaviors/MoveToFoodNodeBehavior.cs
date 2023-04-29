@@ -7,9 +7,13 @@ public class MoveToFoodNodeBehavior : NodeBehavior, OnFixedUpdateNodeBehavior
     [SerializeField]
     private float moveFactor = 1.0f;
 
-    private const float MIN_RANGE = 30.0f;
-    private const float MIN_FORCE = 2.0f;
-    private const float MIN_COST = 1.0f;
+    [HeaderAttribute("Defaults")]
+    [SerializeField]
+    private float MIN_RANGE = 30.0f;
+    [SerializeField]
+    private float MIN_FORCE = 2.0f;
+    [SerializeField]
+    private float MIN_COST = 1.0f;
 
     public void OnFixedUpdate() {
         GraphyNode node = transform.GetComponent<GraphyNode>();

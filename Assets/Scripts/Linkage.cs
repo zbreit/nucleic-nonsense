@@ -17,9 +17,16 @@ public class Linkage : MonoBehaviour
         
     }
 
+    void RefreshRefs() {
+        if (!left) {left = null;}
+        if (!right) {right = null;}
+    }
+
     // Update is called once per frame
     void Update()
     {
+        RefreshRefs();
+        if ((left is null) || (right is null)) { Destroy(this.gameObject); }
         UpdateShape();
         UpdateLocation();
         UpdateOrientation();
@@ -38,7 +45,7 @@ public class Linkage : MonoBehaviour
     }
 
     public void UpdateLocation() {
-        transform.position = this.left.transform.position + ((this.right.transform.position - this.left.transform.position) / 2);
+        transform.position = this.left.transform.position + ((this.right.transform.position - this.left.transform.position) / 2) + new Vector3(0.0f, 0.0f, 1.0f);
     }
 
     public void UpdateOrientation() {

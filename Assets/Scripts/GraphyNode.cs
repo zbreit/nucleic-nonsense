@@ -11,7 +11,10 @@ public class GraphyNode : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    [System.NonSerialized]
     public List<Linkage> linkages;
+
+    public bool drawDebug = false;
 
     public readonly Dictionary<GraphyNodeGene.Type, Color> colorDict = new Dictionary<GraphyNodeGene.Type, Color> {
         { GraphyNodeGene.Type.Structure,   new Color(  0.8f,       0.8f,       0.8f,       1.0f) },
@@ -39,7 +42,7 @@ public class GraphyNode : MonoBehaviour
     void OnDestroy() {
         foreach(Linkage linkObj in linkages) {
             if (!(linkObj is null)) {
-                Destroy(linkObj);
+                Destroy(linkObj.gameObject);
             }
         }
     }
@@ -68,6 +71,16 @@ public class GraphyNode : MonoBehaviour
             foreach(OnInteractSendNodeBehavior b in behaviors) {
                 b.OnInteractSend(interaction);
             }
+        }
+    }
+
+    public void Consume(float amount, Food food) {
+        if (graphy.spawningComplete) {
+            OnConsumeNodeBehavior[] behaviors = transform.GetComponents<OnConsumeNodeBehavior>();
+            foreach(OnConsumeNodeBehavior b in behaviors) {
+                b.OnConsume(amount, food);
+            }
+            resource += food.Consume(amount);
         }
     }
 
