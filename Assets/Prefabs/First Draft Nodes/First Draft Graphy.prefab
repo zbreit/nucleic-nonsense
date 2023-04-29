@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 4705443570358139127, guid: 9640e099e1e90fb4388a89fb9793e896, type: 3}
   - {fileID: 4705443570358139127, guid: b8d12f96e06911f40b43bbe213e7a54b, type: 3}
   linkagePrefab: {fileID: 5690746464578830398, guid: db2068874829fea46bb58c7b4f5391eb, type: 3}
-  linkLength: 2
+  linkLength: 3
 --- !u!114 &4076865081054554468
 MonoBehaviour:
   m_ObjectHideFlags: 0
