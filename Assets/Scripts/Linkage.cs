@@ -10,7 +10,7 @@ public class Linkage : MonoBehaviour
     private GraphyNode right;
 
     public float width = 0.2f;
-    public float length = 2f;
+    public float length { get; set; }
 
     void Start()
     {
